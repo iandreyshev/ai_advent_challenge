@@ -65,7 +65,17 @@ final class ChatViewModel: ObservableObject {
         let body = ChatRequest(
             model: "gpt-4o-mini",
             messages: [
-                .init(role: "system", content: "Ты друг-программист, который отвечает в стиле фильмов Брат 2 и Жмурки"),
+                .init(
+                    role: "system",
+                    content: """
+                    Ты друг-программист, который отвечает в стиле фильмов Брат 2 и Жмурки.
+                    ВСЕГДА отвечай строго в таком формате:
+                    - на ПЕРВОЙ строке один JSON-объект;
+                    - затем пустая строка;
+                    - затем обычный текст-объяснение.
+                    Никакого текста до JSON.
+                    """
+                ),
                 .init(role: "user", content: userText)
             ]
         )
@@ -101,16 +111,42 @@ final class ChatViewModel: ObservableObject {
 struct MessageBubble: View {
     let message: Message
 
+    // Пытаемся разбить текст бота на JSON + остальное
+    private var jsonAndRest: (json: String, rest: String)? {
+        guard !message.isMe else { return nil }
+        // делим по первой пустой строке
+        let parts = message.text.components(separatedBy: "\n\n")
+        guard parts.count >= 2 else { return nil }
+        let json = parts[0]
+        let rest = parts.dropFirst().joined(separator: "\n\n")
+        return (json, rest)
+    }
+
     var body: some View {
         HStack {
             if message.isMe { Spacer() }
 
-            Text(message.text)
-                .padding(12)
-                .background(message.isMe ? Color.blue : Color.gray.opacity(0.2))
-                .foregroundColor(message.isMe ? .white : .black)
-                .cornerRadius(16)
-                .frame(maxWidth: 260, alignment: message.isMe ? .trailing : .leading)
+            VStack(alignment: message.isMe ? .trailing : .leading, spacing: 6) {
+                if let split = jsonAndRest {
+                    // JSON-блок
+                    Text(split.json)
+                        .font(.system(.footnote, design: .monospaced))
+                        .padding(8)
+                        .background(Color.black.opacity(0.06))
+                        .cornerRadius(8)
+
+                    // Обычный текст
+                    Text(split.rest)
+                } else {
+                    // Обычные сообщения (включая твои)
+                    Text(message.text)
+                }
+            }
+            .padding(12)
+            .background(message.isMe ? Color.blue : Color.gray.opacity(0.2))
+            .foregroundColor(message.isMe ? .white : .black)
+            .cornerRadius(16)
+            .frame(maxWidth: 260, alignment: message.isMe ? .trailing : .leading)
 
             if !message.isMe { Spacer() }
         }
