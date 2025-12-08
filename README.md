@@ -4,3 +4,4 @@
 ### [Day 3 — мобильное приложение-чат с вопросами пользователю и определение его роли в IT](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay3)
 ### Day 4 — Диалог с разными сетями и создание группы экспертов (только видео)
 ### [Day 5 — мобильное приложение-чат с возможностью менять характер собеседника](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay5)
+### [Day 6 — мобильное приложение с возможностью выбора температуры ответа](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay6)
