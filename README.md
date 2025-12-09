@@ -5,3 +5,4 @@
 ### Day 4 — Диалог с разными сетями и создание группы экспертов (только видео)
 ### [Day 5 — мобильное приложение-чат с возможностью менять характер собеседника](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay5)
 ### [Day 6 — мобильное приложение с возможностью выбора температуры ответа](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay6)
+### [Day 7 — мобильное приложение со сравнением ответов разных моделей](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay7)
