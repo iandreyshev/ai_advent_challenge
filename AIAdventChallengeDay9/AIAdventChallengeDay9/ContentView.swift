@@ -1,0 +1,468 @@
+//
+//  ContentView.swift
+//  AIAdventChallengeDay9
+//
+//  Created by Ivan Andreyshev on 12.12.2025.
+//
+import SwiftUI
+
+struct ContentView: View {
+    private let client = OpenAIClient(apiKey: AppSecrets.openAIAPIKey)
+
+    // UI input/output
+    @State private var prompt: String = ""
+    @State private var responseText: String = ""
+    @State private var isLoading: Bool = false
+    @State private var errorMessage: String?
+    @State private var tokenLimitError: Bool = false
+
+    // Metrics (last request)
+    @State private var inputTokens: Int?
+    @State private var outputTokens: Int?
+    @State private var totalTokens: Int?
+    @State private var promptWordCount: Int = 0
+    @State private var responseWordCount: Int = 0
+    @State private var elapsedSeconds: Double?
+
+    // Chat + Compression
+    @State private var isCompressionEnabled: Bool = true
+    @State private var messages: [ChatMessage] = []
+    @State private var compressedSummary: String = ""
+    @State private var sinceSummary: [ChatMessage] = []
+    
+    private let summaryChunkSize: Int = 4
+    private let keepLast: Int = 3
+
+    // Token comparison (rough – по total_tokens каждого ответа)
+    @State private var tokensNoCompressionTotal: Int = 0
+    @State private var tokensWithCompressionTotal: Int = 0
+    @State private var lastRequestUsedCompression: Bool = false
+
+    // Keyboard focus
+    @FocusState private var isPromptFocused: Bool
+
+    private let placeholder = "Введите ваш запрос..."
+    private let hardcodedInsertText =
+        """
+        Сделай план реализации “сжатия истории диалога” в iOS SwiftUI приложении.
+        Укажи: модель данных, алгоритм summary каждые 10 сообщений, как сравнить токены и как тестировать качество.
+        """
+    
+    @State private var isDemoRunning: Bool = false
+    @State private var demoIndex: Int = 0
+
+    private let demoScript: [String] = [
+        "Запомни, пожалуйста: меня зовут Иван, я разрабатываю учебное iOS-приложение на SwiftUI.",
+        "Цель приложения: общение с языковой моделью, подсчёт токенов запроса и ответа, слов и времени ответа.",
+        "Важно: приложение должно корректно работать при длинных диалогах и не превышать лимит токенов.",
+        "Добавь требование: история диалога должна автоматически сжиматься с помощью summary.",
+        "Механизм сжатия: каждые несколько сообщений делать summary и хранить его вместо полной истории.",
+        "При этом последние несколько сообщений нужно оставлять без сжатия, чтобы сохранить локальный контекст.",
+        "Также важно уметь сравнивать использование токенов с компрессией и без неё.",
+        "Скажи, пожалуйста, какие ключевые требования к приложению ты сейчас помнишь.",
+        "Теперь представь, что я прошу продолжить разработку этого приложения.",
+        "Не забудь, что мы используем SwiftUI и Responses API, а ключи храним в отдельном файле.",
+        "Добавь краткий план следующих шагов разработки, исходя из всей истории диалога.",
+        "Повтори все основные требования к приложению и текущую цель проекта."
+    ]
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("День 9 — Сжатие диалога")
+                        .font(.largeTitle).bold()
+
+                    // Compression toggle + stats
+                    VStack(alignment: .leading, spacing: 8) {
+                        Toggle("Компрессия истории", isOn: $isCompressionEnabled)
+                        
+                        HStack {
+                            Button(isDemoRunning ? "Демо выполняется..." : "Запустить демо") {
+                                Task { await runDemo() }
+                            }
+                            .buttonStyle(.bordered)
+                            .disabled(isDemoRunning || isLoading)
+
+                            Button("Сброс") {
+                                resetAll()
+                            }
+                            .buttonStyle(.bordered)
+                            .disabled(isDemoRunning || isLoading)
+                        }
+
+                        HStack(spacing: 10) {
+                            Text("Summary:")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+
+                            Text(compressedSummary.isEmpty ? "нет" : "есть")
+                                .font(.caption)
+                                .foregroundColor(compressedSummary.isEmpty ? .secondary : .green)
+                        }
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Токены суммарно (без компрессии): \(tokensNoCompressionTotal)")
+                            Text("Токены суммарно (с компрессией): \(tokensWithCompressionTotal)")
+                        }
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    }
+
+                    Divider()
+
+                    // Prompt input
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Запрос к модели")
+                            .font(.headline)
+
+                        ZStack(alignment: .topLeading) {
+                            if prompt.isEmpty {
+                                Text(placeholder)
+                                    .foregroundColor(.gray.opacity(0.6))
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 12)
+                            }
+
+                            TextEditor(text: $prompt)
+                                .frame(minHeight: 140)
+                                .padding(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray.opacity(0.3))
+                                )
+                                .focused($isPromptFocused)
+                                .onChange(of: prompt) { newValue in
+                                    promptWordCount = wordCount(newValue)
+                                }
+                                .disabled(isDemoRunning)
+                        }
+
+                        HStack {
+                            Spacer()
+
+                            Button("Очистить") {
+                                prompt = ""
+                                promptWordCount = 0
+                            }
+                            .font(.caption)
+                        }
+
+                        Text("Слов в запросе: \(promptWordCount)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    // Send button
+                    Button {
+                        send()
+                    } label: {
+                        HStack {
+                            if isLoading { ProgressView() }
+                            Text("Отправить")
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(isLoading || isDemoRunning || prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+
+                    // Error block
+                    if let errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(tokenLimitError ? .red : .orange)
+                            .font(.footnote)
+                            .padding(8)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(tokenLimitError ? Color.red.opacity(0.12) : Color.orange.opacity(0.12))
+                            )
+                    }
+
+                    // Response text
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Ответ модели")
+                            .font(.headline)
+
+                        Text(responseText.isEmpty ? "Ответа пока нет" : responseText)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray.opacity(0.3))
+                            )
+
+                        Text("Слов в ответе: \(responseWordCount)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    // Metrics
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Метрики последнего запроса")
+                            .font(.headline)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Токены запроса: \(inputTokens ?? 0)")
+                            Text("Токены ответа: \(outputTokens ?? 0)")
+                            Text("Всего токенов: \(totalTokens ?? 0)")
+                            if let elapsedSeconds {
+                                Text(String(format: "Время ответа: %.2f сек", elapsedSeconds))
+                            }
+                            Text("Контекст: \(lastRequestUsedCompression ? "summary + хвост" : "полная история")")
+                        }
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    }
+
+                    Divider()
+
+                    // Chat log (for debugging / quality check)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("История (UI)")
+                            .font(.headline)
+
+                        ForEach(messages) { msg in
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(msg.role == .user ? "USER" : "ASSISTANT")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                Text(msg.text)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .padding(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray.opacity(0.2))
+                            )
+                        }
+                    }
+
+                    Spacer(minLength: 24)
+                }
+                .padding()
+            }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button {
+                        send()
+                    } label: {
+                        if isLoading {
+                            ProgressView()
+                        } else {
+                            Text("Отправить").bold()
+                        }
+                    }
+                    .disabled(isLoading || prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+            }
+        }
+    }
+
+    // MARK: - Actions
+
+    private func send() {
+        let text = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty else { return }
+        isPromptFocused = false
+        Task { await callModel(userText: text) }
+    }
+
+    private func callModel(userText: String) async {
+        isLoading = true
+        errorMessage = nil
+        tokenLimitError = false
+
+        let userText = prompt
+
+        // 1) Add user message
+        let userMsg = ChatMessage(role: .user, text: userText)
+        messages.append(userMsg)
+        sinceSummary.append(userMsg)
+
+        // 2) Maybe compress before sending (if chunk reached)
+        await maybeCompressHistory()
+
+        // 3) Build input (summary+tail or full history)
+        let input = buildConversationInput(currentUserPrompt: userText)
+        lastRequestUsedCompression = isCompressionEnabled && !compressedSummary.isEmpty
+
+        do {
+            let result = try await client.send(
+                prompt: input,
+                model: AppSecrets.openAIModel,
+                maxOutputTokens: 900
+            )
+
+            // 4) Save response
+            responseText = result.text
+            responseWordCount = wordCount(result.text)
+
+            inputTokens = result.inputTokens
+            outputTokens = result.outputTokens
+            totalTokens = result.totalTokens
+            elapsedSeconds = result.elapsedSeconds
+
+            // 5) Add assistant message
+            let assistantMsg = ChatMessage(role: .assistant, text: result.text)
+            messages.append(assistantMsg)
+            sinceSummary.append(assistantMsg)
+
+            // 6) Compare total tokens sums
+            let used = result.totalTokens ?? 0
+            if lastRequestUsedCompression {
+                tokensWithCompressionTotal += used
+            } else {
+                tokensNoCompressionTotal += used
+            }
+
+            // 7) Maybe compress after response too
+            await maybeCompressHistory()
+
+        } catch let error as OpenAIClient.OpenAIError {
+            errorMessage = error.localizedDescription
+            if case .tokenLimitExceeded = error { tokenLimitError = true }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        isLoading = false
+    }
+
+    // MARK: - Conversation building
+
+    private func buildConversationInput(currentUserPrompt: String) -> String {
+        var parts: [String] = []
+
+        if isCompressionEnabled, !compressedSummary.isEmpty {
+            parts.append("""
+            SYSTEM: Ты помощник. Ниже сжатая память диалога (summary). Считай её истинной и используй как контекст.
+            SUMMARY:
+            \(compressedSummary)
+            """)
+
+            let tail = sinceSummary.suffix(keepLast)
+            for m in tail {
+                parts.append("\(m.role == .user ? "USER" : "ASSISTANT"): \(m.text)")
+            }
+        } else {
+            for m in messages {
+                parts.append("\(m.role == .user ? "USER" : "ASSISTANT"): \(m.text)")
+            }
+        }
+
+        parts.append("USER: \(currentUserPrompt)")
+        return parts.joined(separator: "\n\n")
+    }
+
+    // MARK: - Compression
+
+    private func maybeCompressHistory() async {
+        guard isCompressionEnabled else { return }
+        guard sinceSummary.count >= summaryChunkSize else { return }
+
+        var chunk = ""
+        if !compressedSummary.isEmpty {
+            chunk += "Текущее summary:\n\(compressedSummary)\n\n"
+        }
+
+        chunk += "Новые сообщения:\n"
+        for m in sinceSummary.prefix(summaryChunkSize) {
+            chunk += "\(m.role == .user ? "USER" : "ASSISTANT"): \(m.text)\n"
+        }
+
+        let summarizerPrompt =
+            """
+            Сожми историю диалога в компактное summary на русском языке.
+
+            Требования:
+            - Сохрани факты, имена, требования пользователя, принятые решения, ограничения, незавершённые задачи.
+            - Не добавляй выдумок.
+            - Формат:
+              1) Буллеты "Факты и решения"
+              2) Буллеты "Требования/ограничения"
+              3) Блок "Текущая цель"
+
+            Данные:
+            \(chunk)
+            """
+
+        do {
+            let result = try await client.send(
+                prompt: summarizerPrompt,
+                model: AppSecrets.openAIModel,
+                maxOutputTokens: 350
+            )
+
+            compressedSummary = result.text.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            // Remove compressed chunk from sinceSummary
+            sinceSummary = Array(sinceSummary.dropFirst(summaryChunkSize))
+
+        } catch {
+            // Если summary не получилось — не ломаем разговор
+            print("Summary failed: \(error)")
+        }
+    }
+    
+    @MainActor
+    private func resetAll() {
+        prompt = ""
+        responseText = ""
+        errorMessage = nil
+        tokenLimitError = false
+
+        inputTokens = nil
+        outputTokens = nil
+        totalTokens = nil
+        promptWordCount = 0
+        responseWordCount = 0
+        elapsedSeconds = nil
+
+        messages = []
+        compressedSummary = ""
+        sinceSummary = []
+
+        tokensNoCompressionTotal = 0
+        tokensWithCompressionTotal = 0
+        lastRequestUsedCompression = false
+
+        demoIndex = 0
+    }
+
+    private func runDemo() async {
+        if isDemoRunning { return }
+
+        await MainActor.run {
+            // Для наглядности: включи компрессию (или оставь как пользователь выбрал)
+            // isCompressionEnabled = true
+
+            isDemoRunning = true
+            demoIndex = 0
+            errorMessage = nil
+            tokenLimitError = false
+        }
+
+        for (i, msg) in demoScript.enumerated() {
+            await MainActor.run {
+                demoIndex = i + 1
+                prompt = msg
+                promptWordCount = wordCount(msg)
+                isPromptFocused = false
+            }
+
+            // Отправляем и ждём завершения ответа
+            await callModel(userText: msg)
+
+            // Небольшая пауза, чтобы UI выглядел “живым”
+            try? await Task.sleep(nanoseconds: 250_000_000)
+        }
+
+        await MainActor.run {
+            isDemoRunning = false
+        }
+    }
+
+}
