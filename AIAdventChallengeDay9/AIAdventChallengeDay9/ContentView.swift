@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let client = OpenAIClient(apiKey: AppSecrets.openAIAPIKey)
+    private let client = YandexAIClient()
 
     // UI input/output
     @State private var prompt: String = ""
@@ -29,7 +29,7 @@ struct ContentView: View {
     @State private var messages: [ChatMessage] = []
     @State private var compressedSummary: String = ""
     @State private var sinceSummary: [ChatMessage] = []
-    
+
     private let summaryChunkSize: Int = 4
     private let keepLast: Int = 3
 
@@ -47,9 +47,13 @@ struct ContentView: View {
         Сделай план реализации “сжатия истории диалога” в iOS SwiftUI приложении.
         Укажи: модель данных, алгоритм summary каждые 10 сообщений, как сравнить токены и как тестировать качество.
         """
-    
+
     @State private var isDemoRunning: Bool = false
     @State private var demoIndex: Int = 0
+
+    // Retry настройки демо
+    private let demoMaxRetriesPerStep: Int = 3
+    private let demoRetryDelayMs: UInt64 = 600
 
     private let demoScript: [String] = [
         "Запомни, пожалуйста: меня зовут Иван, я разрабатываю учебное iOS-приложение на SwiftUI.",
@@ -76,7 +80,7 @@ struct ContentView: View {
                     // Compression toggle + stats
                     VStack(alignment: .leading, spacing: 8) {
                         Toggle("Компрессия истории", isOn: $isCompressionEnabled)
-                        
+
                         HStack {
                             Button(isDemoRunning ? "Демо выполняется..." : "Запустить демо") {
                                 Task { await runDemo() }
@@ -89,6 +93,12 @@ struct ContentView: View {
                             }
                             .buttonStyle(.bordered)
                             .disabled(isDemoRunning || isLoading)
+                        }
+
+                        if isDemoRunning {
+                            Text("Демо: шаг \(demoIndex)/\(demoScript.count)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                         }
 
                         HStack(spacing: 10) {
@@ -146,6 +156,9 @@ struct ContentView: View {
                                 promptWordCount = 0
                             }
                             .font(.caption)
+
+                            // Если тебе нужна кнопка вставки примера — можно вернуть её сюда:
+                            // Button("Вставить пример") { ... }
                         }
 
                         Text("Слов в запросе: \(promptWordCount)")
@@ -255,7 +268,7 @@ struct ContentView: View {
                             Text("Отправить").bold()
                         }
                     }
-                    .disabled(isLoading || prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(isLoading || isDemoRunning || prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
         }
@@ -267,20 +280,23 @@ struct ContentView: View {
         let text = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         isPromptFocused = false
-        Task { await callModel(userText: text) }
+        Task { _ = await callModel(userText: text) }
     }
 
-    private func callModel(userText: String) async {
+    /// Возвращает true если запрос успешен, иначе false.
+    /// Важно: если ошибка — откатываем добавленное USER сообщение, чтобы ретраи не засоряли историю.
+    private func callModel(userText: String) async -> Bool {
         isLoading = true
         errorMessage = nil
         tokenLimitError = false
 
-        let userText = prompt
-
-        // 1) Add user message
+        // 1) Add user message (optimistic)
         let userMsg = ChatMessage(role: .user, text: userText)
         messages.append(userMsg)
         sinceSummary.append(userMsg)
+
+        // На случай ошибки: запомним ID и откатим эту вставку
+        let insertedUserId = userMsg.id
 
         // 2) Maybe compress before sending (if chunk reached)
         await maybeCompressHistory()
@@ -292,8 +308,7 @@ struct ContentView: View {
         do {
             let result = try await client.send(
                 prompt: input,
-                model: AppSecrets.openAIModel,
-                maxOutputTokens: 900
+                model: AppSecrets.yandexModelUri
             )
 
             // 4) Save response
@@ -321,14 +336,24 @@ struct ContentView: View {
             // 7) Maybe compress after response too
             await maybeCompressHistory()
 
-        } catch let error as OpenAIClient.OpenAIError {
+            isLoading = false
+            return true
+
+        } catch let error as YandexAIClient.YandexAIError {
             errorMessage = error.localizedDescription
-            if case .tokenLimitExceeded = error { tokenLimitError = true }
+            if case .tokenLimitExceeded = error {
+                tokenLimitError = true
+            }
         } catch {
             errorMessage = error.localizedDescription
         }
 
+        // ❗ Откатим добавленное USER сообщение (чтобы при ретрае не дублировалось)
+        messages.removeAll { $0.id == insertedUserId }
+        sinceSummary.removeAll { $0.id == insertedUserId }
+
         isLoading = false
+        return false
     }
 
     // MARK: - Conversation building
@@ -392,8 +417,7 @@ struct ContentView: View {
         do {
             let result = try await client.send(
                 prompt: summarizerPrompt,
-                model: AppSecrets.openAIModel,
-                maxOutputTokens: 350
+                model: AppSecrets.yandexModelUri
             )
 
             compressedSummary = result.text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -406,7 +430,7 @@ struct ContentView: View {
             print("Summary failed: \(error)")
         }
     }
-    
+
     @MainActor
     private func resetAll() {
         prompt = ""
@@ -430,15 +454,13 @@ struct ContentView: View {
         lastRequestUsedCompression = false
 
         demoIndex = 0
+        isDemoRunning = false
     }
 
     private func runDemo() async {
         if isDemoRunning { return }
 
         await MainActor.run {
-            // Для наглядности: включи компрессию (или оставь как пользователь выбрал)
-            // isCompressionEnabled = true
-
             isDemoRunning = true
             demoIndex = 0
             errorMessage = nil
@@ -446,17 +468,34 @@ struct ContentView: View {
         }
 
         for (i, msg) in demoScript.enumerated() {
-            await MainActor.run {
-                demoIndex = i + 1
-                prompt = msg
-                promptWordCount = wordCount(msg)
-                isPromptFocused = false
+            var attempt = 0
+            var success = false
+
+            while attempt <= demoMaxRetriesPerStep && !success {
+                attempt += 1
+
+                await MainActor.run {
+                    demoIndex = i + 1
+                    prompt = msg
+                    promptWordCount = wordCount(msg)
+                    isPromptFocused = false
+                }
+
+                success = await callModel(userText: msg)
+
+                if !success {
+                    // Пауза перед повтором
+                    try? await Task.sleep(nanoseconds: demoRetryDelayMs * 1_000_000)
+
+                    // Если исчерпали попытки — завершаем демо, оставляя ошибку на экране
+                    if attempt > demoMaxRetriesPerStep {
+                        await MainActor.run { isDemoRunning = false }
+                        return
+                    }
+                }
             }
 
-            // Отправляем и ждём завершения ответа
-            await callModel(userText: msg)
-
-            // Небольшая пауза, чтобы UI выглядел “живым”
+            // Небольшая пауза между успешными шагами
             try? await Task.sleep(nanoseconds: 250_000_000)
         }
 
@@ -464,5 +503,4 @@ struct ContentView: View {
             isDemoRunning = false
         }
     }
-
 }
