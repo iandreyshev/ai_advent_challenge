@@ -9,3 +9,4 @@
 ### [Day 8 — iOS приложение с подсчётом токенов](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay8)
 ### [Day 9 — iOS приложение со сжатием контакста разговора](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay9)
 ### [Day 10 — iOS приложение со сжатием контакста разговора и сохранением в локальную базу](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay10)
+### [Day 11 — iOS приложение с подключением к MCP](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay11)
