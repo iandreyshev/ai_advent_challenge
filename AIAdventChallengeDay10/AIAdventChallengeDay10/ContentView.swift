@@ -78,7 +78,7 @@ struct ContentView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("День 9 — Сжатие диалога")
+                    Text("День 10 — Сжатие и сохранение диалога")
                         .font(.largeTitle).bold()
 
                     // Compression toggle + stats
