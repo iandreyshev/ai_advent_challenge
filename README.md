@@ -7,4 +7,5 @@
 ### [Day 6 — iOS приложение с возможностью выбора температуры ответа](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay6)
 ### [Day 7 — iOS приложение со сравнением ответов разных моделей](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay7)
 ### [Day 8 — iOS приложение с подсчётом токенов](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay8)
-### [Day 9 — iOS приложение с запоминанием сжатием контакста разговора](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay9)
+### [Day 9 — iOS приложение со сжатием контакста разговора](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay9)
+### [Day 10 — iOS приложение со сжатием контакста разговора и сохранением в локальную базу](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay10)
