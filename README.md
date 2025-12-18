@@ -11,3 +11,4 @@
 ### [Day 10 — iOS приложение со сжатием контакста разговора и сохранением в локальную базу](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay10)
 ### [Day 11 — iOS приложение с подключением к MCP](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay11)
 ### [Day 12 — iOS собственный MCP-сервер](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay12)
+### [Day 13 — Сервис напоминаний: MCP, Mobile Client, Summary Push Sender](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay13)

@@ -1,0 +1,25 @@
+val kotlin_version: String by project
+val logback_version: String by project
+val mcp_version: String by project
+
+plugins {
+    kotlin("jvm") version "2.2.21"
+    id("io.ktor.plugin") version "3.3.2"
+}
+
+group = "ru.iandreyshev"
+version = "0.0.1"
+
+application {
+    mainClass = "io.ktor.server.netty.EngineMain"
+}
+
+dependencies {
+    implementation("io.ktor:ktor-server-core-jvm")
+    implementation("io.ktor:ktor-server-netty")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-server-core")
+    implementation("io.ktor:ktor-server-config-yaml")
+    implementation("com.google.firebase:firebase-admin:9.3.0")
+    implementation("io.modelcontextprotocol:kotlin-sdk:${mcp_version}")
+}
