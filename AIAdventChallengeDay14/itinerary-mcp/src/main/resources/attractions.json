@@ -1,0 +1,162 @@
+{
+  "attractions": [
+    {
+      "id": "kzn-kremlin",
+      "city": "Казань",
+      "name": "Казанский Кремль",
+      "category": "прогулка",
+      "area": "Центр",
+      "metroOrPoint": "Кремлёвская",
+      "openFrom": "09:00",
+      "openTo": "20:00",
+      "avgTimeMin": 120,
+      "priceRub": 0,
+      "highlight": "Главная точка города: стены, мечеть, виды и атмосфера."
+    },
+    {
+      "id": "kzn-bauman",
+      "city": "Казань",
+      "name": "Улица Баумана (пешеходная)",
+      "category": "прогулка",
+      "area": "Центр",
+      "metroOrPoint": "Площадь Тукая",
+      "openFrom": "00:00",
+      "openTo": "23:59",
+      "avgTimeMin": 90,
+      "priceRub": 0,
+      "highlight": "Идеально для вечерней прогулки и уличных перекусов."
+    },
+    {
+      "id": "kzn-view",
+      "city": "Казань",
+      "name": "Смотровая площадка на набережной Казанки",
+      "category": "вид",
+      "area": "Набережная",
+      "metroOrPoint": "Козья слобода",
+      "openFrom": "06:00",
+      "openTo": "23:00",
+      "avgTimeMin": 60,
+      "priceRub": 0,
+      "highlight": "Красивые фото на закате, особенно с подсветкой города."
+    },
+    {
+      "id": "kzn-museum",
+      "city": "Казань",
+      "name": "Музей города (тестовый)",
+      "category": "музей",
+      "area": "Центр",
+      "metroOrPoint": "Кремлёвская",
+      "openFrom": "10:00",
+      "openTo": "18:00",
+      "avgTimeMin": 75,
+      "priceRub": 550,
+      "highlight": "Коротко и понятно про историю Казани + интерактив."
+    },
+    {
+      "id": "kzn-food",
+      "city": "Казань",
+      "name": "Кафе «Чак-Чак и Ко»",
+      "category": "еда",
+      "area": "Центр",
+      "metroOrPoint": "Площадь Тукая",
+      "openFrom": "09:00",
+      "openTo": "22:00",
+      "avgTimeMin": 60,
+      "priceRub": 900,
+      "highlight": "Татарская кухня: эчпочмаки, кыстыбый, десерты."
+    },
+
+    {
+      "id": "sch-sea-walk",
+      "city": "Сочи",
+      "name": "Приморская набережная (прогулка)",
+      "category": "прогулка",
+      "area": "Центр у моря",
+      "metroOrPoint": "Морпорт",
+      "openFrom": "00:00",
+      "openTo": "23:59",
+      "avgTimeMin": 120,
+      "priceRub": 0,
+      "highlight": "Пальмы, море, кофе-точки и отличный вайб вечером."
+    },
+    {
+      "id": "sch-morport",
+      "city": "Сочи",
+      "name": "Морской порт и фотозона",
+      "category": "вид",
+      "area": "Центр у моря",
+      "metroOrPoint": "Морпорт",
+      "openFrom": "08:00",
+      "openTo": "22:00",
+      "avgTimeMin": 45,
+      "priceRub": 0,
+      "highlight": "Самые «открыточные» кадры города."
+    },
+    {
+      "id": "sch-dendr",
+      "city": "Сочи",
+      "name": "Дендрарий",
+      "category": "природа",
+      "area": "Парк",
+      "metroOrPoint": "Дендрарий",
+      "openFrom": "09:00",
+      "openTo": "19:00",
+      "avgTimeMin": 150,
+      "priceRub": 600,
+      "highlight": "Зелёный парк, редкие растения и подъём на виды."
+    },
+    {
+      "id": "sch-polana",
+      "city": "Сочи",
+      "name": "Красная Поляна (дневная поездка)",
+      "category": "развлечения",
+      "area": "Красная Поляна",
+      "metroOrPoint": "Роза Хутор",
+      "openFrom": "09:00",
+      "openTo": "20:00",
+      "avgTimeMin": 240,
+      "priceRub": 2500,
+      "highlight": "Горы, канатка и чай с видом — очень «для видео»."
+    },
+    {
+      "id": "sch-food",
+      "city": "Сочи",
+      "name": "Ресторан «Море & Хачапури»",
+      "category": "еда",
+      "area": "Центр у моря",
+      "metroOrPoint": "Морпорт",
+      "openFrom": "11:00",
+      "openTo": "23:00",
+      "avgTimeMin": 75,
+      "priceRub": 1600,
+      "highlight": "Морепродукты + грузинская классика, удобно после прогулки."
+    },
+
+    {
+      "id": "mos-vdnh",
+      "city": "Москва",
+      "name": "ВДНХ (прогулка + павильоны)",
+      "category": "прогулка",
+      "area": "Север",
+      "metroOrPoint": "ВДНХ",
+      "openFrom": "00:00",
+      "openTo": "23:59",
+      "avgTimeMin": 180,
+      "priceRub": 0,
+      "highlight": "Гулять можно долго: архитектура, кофе, фотозоны."
+    },
+    {
+      "id": "spb-nevsky-walk",
+      "city": "Санкт-Петербург",
+      "name": "Невский проспект (вечерний маршрут)",
+      "category": "прогулка",
+      "area": "Центр",
+      "metroOrPoint": "Маяковская",
+      "openFrom": "00:00",
+      "openTo": "23:59",
+      "avgTimeMin": 120,
+      "priceRub": 0,
+      "highlight": "Самая классика: витрины, огни, настроение."
+    }
+  ]
+}
