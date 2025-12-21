@@ -12,4 +12,5 @@
 ### [Day 11 — iOS приложение с подключением к MCP](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay11)
 ### [Day 12 — iOS собственный MCP-сервер](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay12)
 ### [Day 13 — Сервис напоминаний: MCP, Mobile Client, Summary Push Sender](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay13)
-### [Day 14 — 3 MCP-сервера, которые подключаются одновременно: Отели, Транспорт, Достопримечательности](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay13)
+### [Day 14 — 3 MCP-сервера, которые подключаются одновременно: Отели, Транспорт, Достопримечательности](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay14)
+### [Day 15 — MCP-сервер, который включает докер-сервер рядом с собой](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay15)
