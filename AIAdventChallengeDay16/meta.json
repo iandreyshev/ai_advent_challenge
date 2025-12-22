@@ -1,0 +1,14 @@
+{
+  "created_at_unix": 1766428755,
+  "data_dir": "data",
+  "model": "nomic-embed-text",
+  "ollama_url": "http://localhost:11434",
+  "chunk_size": 1200,
+  "overlap": 200,
+  "files_found": 135,
+  "files_skipped": 1,
+  "chunks_total": 294,
+  "embedding_dim": 768,
+  "elapsed_sec": 17.748,
+  "format": "jsonl (one chunk per line)"
+}
