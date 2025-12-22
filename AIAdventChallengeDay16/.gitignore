@@ -1,2 +1,4 @@
 # Ignore all documents in data/
 data/**
+index.jsonl
+meta.json
