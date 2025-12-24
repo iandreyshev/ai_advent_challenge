@@ -14,4 +14,5 @@
 ### [Day 13 — Сервис напоминаний: MCP, Mobile Client, Summary Push Sender](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay13)
 ### [Day 14 — 3 MCP-сервера, которые подключаются одновременно: Отели, Транспорт, Достопримечательности](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay14)
 ### [Day 15 — MCP-сервер, который включает докер-сервер рядом с собой](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay15)
-### [Day 16 — Скрипт запускающий эмбеддинг файлов](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay16)
+### [Day 16 — Скрипт эмбеддинга файлов](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay16)
+### [Day 17 — RAG-поиск](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay17)
