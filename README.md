@@ -16,3 +16,4 @@
 ### [Day 15 — MCP-сервер, который включает докер-сервер рядом с собой](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay15)
 ### [Day 16 — Скрипт эмбеддинга файлов](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay16)
 ### [Day 17 — RAG-поиск](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay17)
+### [Day 18 — RAG-поиск с реранкингом](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay18)
