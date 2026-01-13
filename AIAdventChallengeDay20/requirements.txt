@@ -1,0 +1,24 @@
+# AI и Embeddings
+anthropic>=0.40.0
+voyageai>=0.2.3
+
+# Vector Database - используем client версию (без onnxruntime)
+chromadb-client>=0.4.22
+
+# MCP Server
+pydantic>=2.5.0
+
+# Utilities
+python-dotenv>=1.0.0
+aiofiles>=23.2.1
+numpy>=1.24.0
+
+# CLI
+click>=8.1.7
+rich>=13.7.0
+
+# Git integration
+GitPython>=3.1.40
+
+# HTTP для MCP (опционально)
+httpx>=0.26.0
