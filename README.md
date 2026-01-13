@@ -17,3 +17,5 @@
 ### [Day 16 — Скрипт эмбеддинга файлов](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay16)
 ### [Day 17 — RAG-поиск](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay17)
 ### [Day 18 — RAG-поиск с реранкингом](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay18)
+### [Day 19 — Чат работающий с RAG](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay19)
+### [Day 20 — Ассистент работающий с репозиторием (RAG, MCP)](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay20)
