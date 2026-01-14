@@ -19,3 +19,4 @@
 ### [Day 18 — RAG-поиск с реранкингом](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay18)
 ### [Day 19 — Чат работающий с RAG](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay19)
 ### [Day 20 — Ассистент работающий с репозиторием (RAG, MCP)](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay20)
+### [Day 21 — Эмитация шага CI с ревью кода через агента](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay21)
