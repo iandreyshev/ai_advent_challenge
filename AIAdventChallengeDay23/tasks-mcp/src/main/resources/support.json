@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": "user001",
+      "email": "ivan.petrov@example.com",
+      "name": "Иван Петров",
+      "registeredAt": "2024-01-15",
+      "plan": "pro",
+      "status": "active"
+    },
+    {
+      "id": "user002",
+      "email": "maria.sidorova@example.com",
+      "name": "Мария Сидорова",
+      "registeredAt": "2024-03-20",
+      "plan": "free",
+      "status": "active"
+    },
+    {
+      "id": "user003",
+      "email": "alex.kozlov@example.com",
+      "name": "Алексей Козлов",
+      "registeredAt": "2023-11-10",
+      "plan": "business",
+      "status": "active"
+    },
+    {
+      "id": "user004",
+      "email": "olga.volkova@example.com",
+      "name": "Ольга Волкова",
+      "registeredAt": "2024-06-01",
+      "plan": "free",
+      "status": "trial_expired"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "ticket001",
+      "userId": "user001",
+      "subject": "Не работает авторизация через Google",
+      "description": "При попытке войти через Google OAuth выдает ошибку 'Invalid redirect URI'. Пробовал несколько раз, не помогает.",
+      "status": "open",
+      "priority": "high",
+      "category": "authentication",
+      "createdAt": "2026-01-14T10:30:00Z",
+      "updatedAt": "2026-01-14T10:30:00Z",
+      "tags": ["oauth", "google", "login"]
+    },
+    {
+      "id": "ticket002",
+      "userId": "user002",
+      "subject": "Не могу создать новую задачу в проекте",
+      "description": "Когда нажимаю кнопку 'Создать задачу', ничего не происходит. Проблема появилась сегодня утром. Браузер Chrome последней версии.",
+      "status": "open",
+      "priority": "high",
+      "category": "tasks",
+      "createdAt": "2026-01-14T09:15:00Z",
+      "updatedAt": "2026-01-14T14:20:00Z",
+      "tags": ["tasks", "ui", "bug"]
+    },
+    {
+      "id": "ticket003",
+      "userId": "user003",
+      "subject": "Не приходят email-уведомления",
+      "description": "Уже 3 дня не получаю уведомления о новых комментариях и упоминаниях. В настройках все включено. Проверил спам - там тоже ничего.",
+      "status": "in_progress",
+      "priority": "medium",
+      "category": "notifications",
+      "createdAt": "2026-01-12T16:45:00Z",
+      "updatedAt": "2026-01-14T11:00:00Z",
+      "tags": ["email", "notifications"]
+    },
+    {
+      "id": "ticket004",
+      "userId": "user001",
+      "subject": "Вопрос о переходе на Business план",
+      "description": "Хочу перейти на Business план. Какие есть способы оплаты? Можно ли оплатить со счета организации?",
+      "status": "resolved",
+      "priority": "low",
+      "category": "billing",
+      "createdAt": "2026-01-10T14:20:00Z",
+      "updatedAt": "2026-01-11T10:15:00Z",
+      "tags": ["billing", "upgrade"],
+      "resolution": "Предоставлена информация о способах оплаты. Клиент получил реквизиты для оплаты со счета."
+    },
+    {
+      "id": "ticket005",
+      "userId": "user004",
+      "subject": "Потерял доступ после окончания триала",
+      "description": "Пробный период закончился, и теперь я не могу открыть свои старые проекты. Они удалятся или можно восстановить доступ?",
+      "status": "open",
+      "priority": "medium",
+      "category": "account",
+      "createdAt": "2026-01-13T12:00:00Z",
+      "updatedAt": "2026-01-13T12:00:00Z",
+      "tags": ["trial", "access", "billing"]
+    },
+    {
+      "id": "ticket006",
+      "userId": "user002",
+      "subject": "Задачи не синхронизируются между устройствами",
+      "description": "Создаю задачу на ноутбуке, но она не появляется в мобильном приложении. Обновление страницы не помогает.",
+      "status": "open",
+      "priority": "high",
+      "category": "sync",
+      "createdAt": "2026-01-14T15:30:00Z",
+      "updatedAt": "2026-01-14T15:30:00Z",
+      "tags": ["sync", "mobile", "tasks"]
+    },
+    {
+      "id": "ticket007",
+      "userId": "user003",
+      "subject": "Как настроить интеграцию с Slack?",
+      "description": "Видел, что есть интеграция со Slack. Где найти инструкцию по настройке?",
+      "status": "resolved",
+      "priority": "low",
+      "category": "integrations",
+      "createdAt": "2026-01-09T11:20:00Z",
+      "updatedAt": "2026-01-09T13:45:00Z",
+      "tags": ["slack", "integrations", "howto"],
+      "resolution": "Отправлена ссылка на документацию по интеграции со Slack."
+    }
+  ]
+}

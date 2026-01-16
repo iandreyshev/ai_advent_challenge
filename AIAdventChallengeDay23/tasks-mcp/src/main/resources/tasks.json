@@ -1,0 +1,197 @@
+{
+  "users": [
+    {
+      "id": "user001",
+      "email": "ivan.petrov@example.com",
+      "name": "Иван Петров",
+      "role": "developer",
+      "team": "backend"
+    },
+    {
+      "id": "user002",
+      "email": "maria.sidorova@example.com",
+      "name": "Мария Сидорова",
+      "role": "frontend",
+      "team": "frontend"
+    },
+    {
+      "id": "user003",
+      "email": "alex.kozlov@example.com",
+      "name": "Алексей Козлов",
+      "role": "lead",
+      "team": "backend"
+    },
+    {
+      "id": "user004",
+      "email": "olga.volkova@example.com",
+      "name": "Ольга Волкова",
+      "role": "qa",
+      "team": "qa"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj001",
+      "name": "TaskFlow Core",
+      "description": "Основной продукт - платформа управления задачами"
+    },
+    {
+      "id": "proj002",
+      "name": "TaskFlow Mobile",
+      "description": "Мобильное приложение для iOS и Android"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task001",
+      "projectId": "proj001",
+      "title": "Исправить баг с OAuth авторизацией",
+      "description": "При авторизации через Google возникает ошибка Invalid redirect URI. Нужно проверить настройки OAuth и исправить redirect URL.",
+      "status": "in_progress",
+      "priority": "high",
+      "assigneeId": "user001",
+      "createdBy": "user003",
+      "createdAt": "2026-01-14T10:00:00Z",
+      "updatedAt": "2026-01-15T09:30:00Z",
+      "dueDate": "2026-01-16T18:00:00Z",
+      "tags": ["bug", "oauth", "authentication"],
+      "estimatedHours": 4
+    },
+    {
+      "id": "task002",
+      "projectId": "proj001",
+      "title": "Реализовать фильтрацию задач по приоритету",
+      "description": "Добавить возможность фильтровать задачи по уровню приоритета в UI. Нужен dropdown с опциями: all, low, medium, high, urgent.",
+      "status": "todo",
+      "priority": "high",
+      "assigneeId": "user002",
+      "createdBy": "user003",
+      "createdAt": "2026-01-14T11:00:00Z",
+      "updatedAt": "2026-01-14T11:00:00Z",
+      "dueDate": "2026-01-17T18:00:00Z",
+      "tags": ["feature", "ui", "filters"],
+      "estimatedHours": 8
+    },
+    {
+      "id": "task003",
+      "projectId": "proj001",
+      "title": "Оптимизировать запросы к базе данных",
+      "description": "Текущие запросы к БД слишком медленные при большом количестве задач. Нужно добавить индексы и оптимизировать N+1 queries.",
+      "status": "todo",
+      "priority": "high",
+      "assigneeId": "user001",
+      "createdBy": "user003",
+      "createdAt": "2026-01-13T14:00:00Z",
+      "updatedAt": "2026-01-13T14:00:00Z",
+      "dueDate": "2026-01-18T18:00:00Z",
+      "tags": ["performance", "database", "optimization"],
+      "estimatedHours": 6
+    },
+    {
+      "id": "task004",
+      "projectId": "proj002",
+      "title": "Добавить поддержку темной темы в мобильном приложении",
+      "description": "Пользователи просят темную тему для комфортной работы вечером. Нужно реализовать переключение между светлой и темной темами.",
+      "status": "todo",
+      "priority": "medium",
+      "assigneeId": "user002",
+      "createdBy": "user003",
+      "createdAt": "2026-01-12T16:00:00Z",
+      "updatedAt": "2026-01-12T16:00:00Z",
+      "dueDate": "2026-01-20T18:00:00Z",
+      "tags": ["feature", "mobile", "ui", "dark-mode"],
+      "estimatedHours": 12
+    },
+    {
+      "id": "task005",
+      "projectId": "proj001",
+      "title": "Написать unit-тесты для модуля уведомлений",
+      "description": "Модуль уведомлений не покрыт тестами. Нужно написать unit-тесты для всех основных функций.",
+      "status": "todo",
+      "priority": "medium",
+      "assigneeId": "user001",
+      "createdBy": "user003",
+      "createdAt": "2026-01-11T10:00:00Z",
+      "updatedAt": "2026-01-11T10:00:00Z",
+      "dueDate": "2026-01-19T18:00:00Z",
+      "tags": ["testing", "notifications", "quality"],
+      "estimatedHours": 5
+    },
+    {
+      "id": "task006",
+      "projectId": "proj002",
+      "title": "Исправить краш при загрузке больших изображений",
+      "description": "Приложение падает при попытке загрузить изображение больше 10MB. Нужно добавить валидацию размера и сжатие изображений.",
+      "status": "blocked",
+      "priority": "high",
+      "assigneeId": "user002",
+      "createdBy": "user003",
+      "createdAt": "2026-01-10T09:00:00Z",
+      "updatedAt": "2026-01-14T15:00:00Z",
+      "dueDate": "2026-01-16T18:00:00Z",
+      "tags": ["bug", "mobile", "images", "crash"],
+      "estimatedHours": 3,
+      "blockedReason": "Ожидаем обновления библиотеки обработки изображений"
+    },
+    {
+      "id": "task007",
+      "projectId": "proj001",
+      "title": "Обновить документацию API",
+      "description": "Документация API устарела. Нужно добавить описание новых эндпоинтов и обновить примеры запросов.",
+      "status": "done",
+      "priority": "low",
+      "assigneeId": "user003",
+      "createdBy": "user003",
+      "createdAt": "2026-01-08T14:00:00Z",
+      "updatedAt": "2026-01-10T17:00:00Z",
+      "dueDate": "2026-01-10T18:00:00Z",
+      "tags": ["documentation", "api"],
+      "estimatedHours": 4
+    },
+    {
+      "id": "task008",
+      "projectId": "proj001",
+      "title": "Провести code review для PR #234",
+      "description": "Иван создал PR с рефакторингом модуля аутентификации. Нужно проверить код и оставить комментарии.",
+      "status": "todo",
+      "priority": "high",
+      "assigneeId": "user003",
+      "createdBy": "user001",
+      "createdAt": "2026-01-15T10:00:00Z",
+      "updatedAt": "2026-01-15T10:00:00Z",
+      "dueDate": "2026-01-15T18:00:00Z",
+      "tags": ["code-review", "authentication"],
+      "estimatedHours": 2
+    },
+    {
+      "id": "task009",
+      "projectId": "proj002",
+      "title": "Настроить CI/CD для автоматической сборки",
+      "description": "Настроить GitHub Actions для автоматической сборки и деплоя мобильного приложения в TestFlight и Google Play Console.",
+      "status": "in_progress",
+      "priority": "medium",
+      "assigneeId": "user001",
+      "createdBy": "user003",
+      "createdAt": "2026-01-09T11:00:00Z",
+      "updatedAt": "2026-01-14T16:00:00Z",
+      "dueDate": "2026-01-22T18:00:00Z",
+      "tags": ["devops", "ci-cd", "automation"],
+      "estimatedHours": 16
+    },
+    {
+      "id": "task010",
+      "projectId": "proj001",
+      "title": "Исследовать возможность интеграции с Jira",
+      "description": "Изучить Jira API и понять, как можно интегрировать TaskFlow с Jira для синхронизации задач.",
+      "status": "todo",
+      "priority": "low",
+      "assigneeId": "user001",
+      "createdBy": "user003",
+      "createdAt": "2026-01-13T15:00:00Z",
+      "updatedAt": "2026-01-13T15:00:00Z",
+      "dueDate": "2026-01-25T18:00:00Z",
+      "tags": ["research", "integrations", "jira"],
+      "estimatedHours": 8
+    }
+  ]
+}
