@@ -23,3 +23,4 @@
 ### [Day 22 — Агент-помощник работающий с MCP + RAG](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay22)
 ### [Day 23 — Агент-тасктрекер работающий с MCP + RAG](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay23)
 ### [Day 24 — Скрипт сделанный с помощью ИИ](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay24)
+### [Day 25 — Общение с локальной моделью](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay25)
