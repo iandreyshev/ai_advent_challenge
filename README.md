@@ -24,3 +24,4 @@
 ### [Day 23 — Агент-тасктрекер работающий с MCP + RAG](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay23)
 ### [Day 24 — Скрипт сделанный с помощью ИИ](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay24)
 ### [Day 25 — Общение с локальной моделью](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay25)
+### [Day 26 — Общение с удалённой Ollama на VPS](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay26)
