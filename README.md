@@ -25,3 +25,4 @@
 ### [Day 24 — Скрипт сделанный с помощью ИИ](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay24)
 ### [Day 25 — Общение с локальной моделью](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay25)
 ### [Day 26 — Общение с удалённой Ollama на VPS](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay26)
+### [Day 27 — Общение к VPS с локальной моделью](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay27)
