@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a collection of 25 daily AI/LLM challenge labs (AI Advent Challenge). Each `AIAdventChallengeDay{N}/` directory is an independent project demonstrating different AI integration patterns. The projects are not interconnected.
+This is a collection of daily AI/LLM challenge labs (AI Advent Challenge). Each `AIAdventChallengeDay{N}/` directory is an independent project demonstrating different AI integration patterns. The projects are not interconnected.
 
 ## Project Types by Day
 
@@ -25,6 +25,11 @@ This is a collection of 25 daily AI/LLM challenge labs (AI Advent Challenge). Ea
 
 **Python Chat (Day 25)**: Simple Ollama chat client
 - Run: `python3 chat.py [model_name]`
+
+**Python LLM Optimization (Day 28)**: Local LLM parameter tuning and prompt engineering
+- Run: `python3 optimize_llm.py` (interactive demo)
+- Run: `python3 benchmark.py` (benchmarks with metrics)
+- Demonstrates: temperature, top_p, num_ctx, prompt templates comparison
 
 ## Common Dependencies
 
