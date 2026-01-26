@@ -1,0 +1,128 @@
+[
+  {"user_id": "user_001", "event": "landing", "timestamp": "2024-01-26T10:00:00Z", "source": "google"},
+  {"user_id": "user_001", "event": "view_product", "timestamp": "2024-01-26T10:00:12Z", "product": "Ноутбук"},
+  {"user_id": "user_001", "event": "add_to_cart", "timestamp": "2024-01-26T10:00:45Z", "product": "Ноутбук"},
+  {"user_id": "user_001", "event": "checkout_start", "timestamp": "2024-01-26T10:01:20Z"},
+  {"user_id": "user_001", "event": "purchase", "timestamp": "2024-01-26T10:02:15Z", "amount": 89990},
+
+  {"user_id": "user_002", "event": "landing", "timestamp": "2024-01-26T10:01:00Z", "source": "facebook"},
+  {"user_id": "user_002", "event": "view_product", "timestamp": "2024-01-26T10:01:08Z", "product": "Наушники"},
+  {"user_id": "user_002", "event": "add_to_cart", "timestamp": "2024-01-26T10:01:34Z", "product": "Наушники"},
+
+  {"user_id": "user_003", "event": "landing", "timestamp": "2024-01-26T10:02:00Z", "source": "google"},
+  {"user_id": "user_003", "event": "view_product", "timestamp": "2024-01-26T10:02:15Z", "product": "Клавиатура"},
+
+  {"user_id": "user_004", "event": "landing", "timestamp": "2024-01-26T10:03:00Z", "source": "direct"},
+  {"user_id": "user_004", "event": "view_product", "timestamp": "2024-01-26T10:03:11Z", "product": "Ноутбук"},
+  {"user_id": "user_004", "event": "add_to_cart", "timestamp": "2024-01-26T10:03:45Z", "product": "Ноутбук"},
+  {"user_id": "user_004", "event": "checkout_start", "timestamp": "2024-01-26T10:04:10Z"},
+  {"user_id": "user_004", "event": "purchase", "timestamp": "2024-01-26T10:05:05Z", "amount": 89990},
+
+  {"user_id": "user_005", "event": "landing", "timestamp": "2024-01-26T10:04:00Z", "source": "google"},
+  {"user_id": "user_005", "event": "view_product", "timestamp": "2024-01-26T10:04:18Z", "product": "Наушники"},
+  {"user_id": "user_005", "event": "add_to_cart", "timestamp": "2024-01-26T10:04:52Z", "product": "Наушники"},
+
+  {"user_id": "user_006", "event": "landing", "timestamp": "2024-01-26T10:05:00Z", "source": "facebook"},
+
+  {"user_id": "user_007", "event": "landing", "timestamp": "2024-01-26T10:06:00Z", "source": "google"},
+  {"user_id": "user_007", "event": "view_product", "timestamp": "2024-01-26T10:06:09Z", "product": "Ноутбук"},
+  {"user_id": "user_007", "event": "add_to_cart", "timestamp": "2024-01-26T10:06:41Z", "product": "Ноутбук"},
+  {"user_id": "user_007", "event": "checkout_start", "timestamp": "2024-01-26T10:07:15Z"},
+
+  {"user_id": "user_008", "event": "landing", "timestamp": "2024-01-26T10:07:00Z", "source": "direct"},
+  {"user_id": "user_008", "event": "view_product", "timestamp": "2024-01-26T10:07:13Z", "product": "Клавиатура"},
+
+  {"user_id": "user_009", "event": "landing", "timestamp": "2024-01-26T10:08:00Z", "source": "google"},
+  {"user_id": "user_009", "event": "view_product", "timestamp": "2024-01-26T10:08:21Z", "product": "Наушники"},
+  {"user_id": "user_009", "event": "add_to_cart", "timestamp": "2024-01-26T10:08:55Z", "product": "Наушники"},
+  {"user_id": "user_009", "event": "checkout_start", "timestamp": "2024-01-26T10:09:32Z"},
+  {"user_id": "user_009", "event": "purchase", "timestamp": "2024-01-26T10:10:18Z", "amount": 5990},
+
+  {"user_id": "user_010", "event": "landing", "timestamp": "2024-01-26T10:09:00Z", "source": "facebook"},
+  {"user_id": "user_010", "event": "view_product", "timestamp": "2024-01-26T10:09:17Z", "product": "Ноутбук"},
+
+  {"user_id": "user_011", "event": "landing", "timestamp": "2024-01-26T10:10:00Z", "source": "google"},
+  {"user_id": "user_011", "event": "view_product", "timestamp": "2024-01-26T10:10:14Z", "product": "Монитор"},
+  {"user_id": "user_011", "event": "add_to_cart", "timestamp": "2024-01-26T10:10:50Z", "product": "Монитор"},
+  {"user_id": "user_011", "event": "checkout_start", "timestamp": "2024-01-26T10:11:25Z"},
+  {"user_id": "user_011", "event": "purchase", "timestamp": "2024-01-26T10:12:10Z", "amount": 34990},
+
+  {"user_id": "user_012", "event": "landing", "timestamp": "2024-01-26T10:11:00Z", "source": "direct"},
+  {"user_id": "user_012", "event": "view_product", "timestamp": "2024-01-26T10:11:08Z", "product": "Наушники"},
+  {"user_id": "user_012", "event": "add_to_cart", "timestamp": "2024-01-26T10:11:42Z", "product": "Наушники"},
+
+  {"user_id": "user_013", "event": "landing", "timestamp": "2024-01-26T10:12:00Z", "source": "google"},
+  {"user_id": "user_013", "event": "view_product", "timestamp": "2024-01-26T10:12:11Z", "product": "Клавиатура"},
+  {"user_id": "user_013", "event": "add_to_cart", "timestamp": "2024-01-26T10:12:48Z", "product": "Клавиатура"},
+  {"user_id": "user_013", "event": "checkout_start", "timestamp": "2024-01-26T10:13:20Z"},
+
+  {"user_id": "user_014", "event": "landing", "timestamp": "2024-01-26T10:13:00Z", "source": "facebook"},
+
+  {"user_id": "user_015", "event": "landing", "timestamp": "2024-01-26T10:14:00Z", "source": "google"},
+  {"user_id": "user_015", "event": "view_product", "timestamp": "2024-01-26T10:14:12Z", "product": "Монитор"},
+  {"user_id": "user_015", "event": "add_to_cart", "timestamp": "2024-01-26T10:14:50Z", "product": "Монитор"},
+  {"user_id": "user_015", "event": "checkout_start", "timestamp": "2024-01-26T10:15:30Z"},
+  {"user_id": "user_015", "event": "purchase", "timestamp": "2024-01-26T10:16:20Z", "amount": 34990},
+
+  {"user_id": "user_016", "event": "landing", "timestamp": "2024-01-26T10:15:00Z", "source": "direct"},
+  {"user_id": "user_016", "event": "view_product", "timestamp": "2024-01-26T10:15:09Z", "product": "Ноутбук"},
+
+  {"user_id": "user_017", "event": "landing", "timestamp": "2024-01-26T10:16:00Z", "source": "google"},
+  {"user_id": "user_017", "event": "view_product", "timestamp": "2024-01-26T10:16:15Z", "product": "Наушники"},
+  {"user_id": "user_017", "event": "add_to_cart", "timestamp": "2024-01-26T10:16:48Z", "product": "Наушники"},
+  {"user_id": "user_017", "event": "checkout_start", "timestamp": "2024-01-26T10:17:25Z"},
+  {"user_id": "user_017", "event": "purchase", "timestamp": "2024-01-26T10:18:10Z", "amount": 5990},
+
+  {"user_id": "user_018", "event": "landing", "timestamp": "2024-01-26T10:17:00Z", "source": "facebook"},
+  {"user_id": "user_018", "event": "view_product", "timestamp": "2024-01-26T10:17:11Z", "product": "Клавиатура"},
+  {"user_id": "user_018", "event": "add_to_cart", "timestamp": "2024-01-26T10:17:45Z", "product": "Клавиатура"},
+
+  {"user_id": "user_019", "event": "landing", "timestamp": "2024-01-26T10:18:00Z", "source": "google"},
+  {"user_id": "user_019", "event": "view_product", "timestamp": "2024-01-26T10:18:14Z", "product": "Монитор"},
+
+  {"user_id": "user_020", "event": "landing", "timestamp": "2024-01-26T10:19:00Z", "source": "direct"},
+  {"user_id": "user_020", "event": "view_product", "timestamp": "2024-01-26T10:19:08Z", "product": "Ноутбук"},
+  {"user_id": "user_020", "event": "add_to_cart", "timestamp": "2024-01-26T10:19:42Z", "product": "Ноутбук"},
+  {"user_id": "user_020", "event": "checkout_start", "timestamp": "2024-01-26T10:20:15Z"},
+  {"user_id": "user_020", "event": "purchase", "timestamp": "2024-01-26T10:21:00Z", "amount": 89990},
+
+  {"user_id": "user_021", "event": "landing", "timestamp": "2024-01-26T10:20:00Z", "source": "google"},
+
+  {"user_id": "user_022", "event": "landing", "timestamp": "2024-01-26T10:21:00Z", "source": "facebook"},
+  {"user_id": "user_022", "event": "view_product", "timestamp": "2024-01-26T10:21:12Z", "product": "Наушники"},
+  {"user_id": "user_022", "event": "add_to_cart", "timestamp": "2024-01-26T10:21:48Z", "product": "Наушники"},
+  {"user_id": "user_022", "event": "checkout_start", "timestamp": "2024-01-26T10:22:20Z"},
+
+  {"user_id": "user_023", "event": "landing", "timestamp": "2024-01-26T10:22:00Z", "source": "google"},
+  {"user_id": "user_023", "event": "view_product", "timestamp": "2024-01-26T10:22:09Z", "product": "Клавиатура"},
+  {"user_id": "user_023", "event": "add_to_cart", "timestamp": "2024-01-26T10:22:45Z", "product": "Клавиатура"},
+
+  {"user_id": "user_024", "event": "landing", "timestamp": "2024-01-26T10:23:00Z", "source": "direct"},
+  {"user_id": "user_024", "event": "view_product", "timestamp": "2024-01-26T10:23:11Z", "product": "Монитор"},
+  {"user_id": "user_024", "event": "add_to_cart", "timestamp": "2024-01-26T10:23:48Z", "product": "Монитор"},
+  {"user_id": "user_024", "event": "checkout_start", "timestamp": "2024-01-26T10:24:25Z"},
+  {"user_id": "user_024", "event": "purchase", "timestamp": "2024-01-26T10:25:10Z", "amount": 34990},
+
+  {"user_id": "user_025", "event": "landing", "timestamp": "2024-01-26T10:24:00Z", "source": "google"},
+  {"user_id": "user_025", "event": "view_product", "timestamp": "2024-01-26T10:24:15Z", "product": "Ноутбук"},
+
+  {"user_id": "user_026", "event": "landing", "timestamp": "2024-01-26T10:25:00Z", "source": "facebook"},
+  {"user_id": "user_026", "event": "view_product", "timestamp": "2024-01-26T10:25:11Z", "product": "Наушники"},
+
+  {"user_id": "user_027", "event": "landing", "timestamp": "2024-01-26T10:26:00Z", "source": "google"},
+  {"user_id": "user_027", "event": "view_product", "timestamp": "2024-01-26T10:26:08Z", "product": "Клавиатура"},
+  {"user_id": "user_027", "event": "add_to_cart", "timestamp": "2024-01-26T10:26:42Z", "product": "Клавиатура"},
+
+  {"user_id": "user_028", "event": "landing", "timestamp": "2024-01-26T10:27:00Z", "source": "direct"},
+  {"user_id": "user_028", "event": "view_product", "timestamp": "2024-01-26T10:27:14Z", "product": "Монитор"},
+  {"user_id": "user_028", "event": "add_to_cart", "timestamp": "2024-01-26T10:27:50Z", "product": "Монитор"},
+  {"user_id": "user_028", "event": "checkout_start", "timestamp": "2024-01-26T10:28:25Z"},
+
+  {"user_id": "user_029", "event": "landing", "timestamp": "2024-01-26T10:28:00Z", "source": "google"},
+
+  {"user_id": "user_030", "event": "landing", "timestamp": "2024-01-26T10:29:00Z", "source": "facebook"},
+  {"user_id": "user_030", "event": "view_product", "timestamp": "2024-01-26T10:29:10Z", "product": "Ноутбук"},
+  {"user_id": "user_030", "event": "add_to_cart", "timestamp": "2024-01-26T10:29:45Z", "product": "Ноутбук"},
+  {"user_id": "user_030", "event": "checkout_start", "timestamp": "2024-01-26T10:30:20Z"},
+  {"user_id": "user_030", "event": "purchase", "timestamp": "2024-01-26T10:31:05Z", "amount": 89990}
+]

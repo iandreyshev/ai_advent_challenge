@@ -23,13 +23,27 @@ This is a collection of daily AI/LLM challenge labs (AI Advent Challenge). Each 
 - Uses Ollama for local embeddings (`nomic-embed-text` model)
 - Day 20 uses Makefile: `make index`, `make assistant`
 
-**Python Chat (Day 25)**: Simple Ollama chat client
-- Run: `python3 chat.py [model_name]`
+**Bash Automation (Day 24)**: Mobile app release automation script
+- Run: `./run.sh -v <version> -n "<notes>" -m "<market>" -a "<app>"`
+- Merges release branches, posts to Rocket.Chat, creates YouTrack links
+- Handles App Store, Google Play, AppGallery, RuStore releases
+- Requires env vars: `RC_RELEASE_BOT_ID`, `RC_RELEASE_BOT_AUTH_TOKEN`, `RC_RECEIVER_ID`
+
+**Python Chat (Days 25-27)**: Ollama chat clients
+- Day 25: Simple local chat — `python3 chat.py [model_name]`
+- Days 26-27: Remote Ollama on VPS — `python3 chat.py` or `python3 chat.py --host <ip> --model <model>`
+- Days 26-27 use `.env` for config (`OLLAMA_HOST`, `OLLAMA_PORT`, `OLLAMA_MODEL`)
+- Chat commands: `exit`/`quit`, `clear`, `model <name>`
 
 **Python LLM Optimization (Day 28)**: Local LLM parameter tuning and prompt engineering
 - Run: `python3 optimize_llm.py` (interactive demo)
 - Run: `python3 benchmark.py` (benchmarks with metrics)
 - Demonstrates: temperature, top_p, num_ctx, prompt templates comparison
+
+**Python Data Analyst (Day 29)**: Local data analysis with Ollama
+- Run: `python3 analyst.py <data_file> [model]`
+- Loads CSV/JSON, builds statistical summary, answers analytical questions
+- Sample data in `sample_data/` (server logs, user funnel)
 
 ## Common Dependencies
 
