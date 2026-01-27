@@ -28,3 +28,4 @@
 ### [Day 27 — Общение к VPS с локальной моделью](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay27)
 ### [Day 28 — Оптимизация и адаптация локальной LLM](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay28)
 ### [Day 29 — Локальный аналитик данных](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay29)
+### [Day 30 — Персональный AI-агент](https://github.com/iandreyshev/ai_advent_challenge/tree/main/AIAdventChallengeDay30)
