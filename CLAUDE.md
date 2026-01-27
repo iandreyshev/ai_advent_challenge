@@ -45,6 +45,15 @@ This is a collection of daily AI/LLM challenge labs (AI Advent Challenge). Each 
 - Loads CSV/JSON, builds statistical summary, answers analytical questions
 - Sample data in `sample_data/` (server logs, user funnel)
 
+**Python Personal Agent (Day 30)**: Personalized AI agent with memory
+- Run: `python3 agent.py [--profile path] [--model name] [--no-auto-memory]`
+- Loads user profile from `profile.yaml` (name, role, habits, projects, preferences)
+- Persistent memory between sessions (`memory.json`, gitignored)
+- Facts rephrased in third person via LLM before saving
+- Auto-extracts facts from user messages; manual `/remember <fact>` command
+- Commands: `/profile`, `/remember`, `/memory`, `/forget`, `/clear`, `/model`, `/help`
+- Requires: `pyyaml`
+
 ## Common Dependencies
 
 **Ollama** (required for most Python/Kotlin projects):
