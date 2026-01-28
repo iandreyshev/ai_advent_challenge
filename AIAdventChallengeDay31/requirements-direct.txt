@@ -1,0 +1,21 @@
+# Зависимости для voice_agent_direct.py (прямая отправка аудио в модель)
+
+# Базовые зависимости
+PyAudio>=0.2.14
+requests>=2.31.0
+
+# Whisper (выберите одну из опций)
+
+# Вариант 1: OpenAI Whisper (требует больше ресурсов, но качественнее)
+openai-whisper>=20231117
+
+# Вариант 2: Faster Whisper (быстрее, меньше ресурсов)
+# faster-whisper>=0.10.0
+
+# Дополнительные зависимости для OpenAI Whisper
+numpy>=1.23.0
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Опционально: ffmpeg для работы с разными форматами аудио
+# Установите через систему: brew install ffmpeg (macOS) или apt-get install ffmpeg (Linux)

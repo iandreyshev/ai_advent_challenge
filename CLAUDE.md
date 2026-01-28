@@ -54,6 +54,20 @@ This is a collection of daily AI/LLM challenge labs (AI Advent Challenge). Each 
 - Commands: `/profile`, `/remember`, `/memory`, `/forget`, `/clear`, `/model`, `/help`
 - Requires: `pyyaml`
 
+**Python Voice Agent (Day 31)**: Voice-controlled AI agent with speech recognition
+- Run: `python3 voice_agent.py [--model name] [--engine google|sphinx|whisper] [--language ru-RU]`
+- Architecture: Speech → Text (Speech Recognition) → LLM (Ollama) → Text output
+- Supports multiple recognition engines: Google (online), Sphinx (offline), Whisper API
+- Continuous conversation loop with voice commands (continues listening after each command)
+- Screenshot feature: say "скриншот" or "screenshot" to capture screen (saved to `screenshots/` folder)
+- App launcher: say "просыпайся" or "папочка вернулся" to launch workspace apps (Chrome, VS Code, Fork, Android Studio, Terminal)
+- Cross-platform support: macOS, Windows, Linux
+- Demo mode: `python3 demo.py` (single shot for video recording)
+- Test mode: `python3 test_agent.py` (no microphone), `python3 test_microphone.py` (mic check)
+- Makefile commands: `make install`, `make run`, `make demo`, `make test`, `make test-mic`
+- Requires: `SpeechRecognition`, `PyAudio`, `Pillow`, `requests` (plus `portaudio` system library)
+- Optional: `pocketsphinx` for offline mode, `OPENAI_API_KEY` for Whisper
+
 ## Common Dependencies
 
 **Ollama** (required for most Python/Kotlin projects):

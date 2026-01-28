@@ -1,0 +1,8 @@
+SpeechRecognition>=3.10.0
+PyAudio>=0.2.14
+requests>=2.31.0
+Pillow>=10.0.0
+
+# Опциональные зависимости для прямой работы с аудио
+# openai-whisper>=20231117  # Для локального Whisper (--mode local)
+# faster-whisper>=0.10.0     # Альтернатива, быстрее чем openai-whisper
