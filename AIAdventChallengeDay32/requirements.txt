@@ -1,0 +1,21 @@
+# God Agent Dependencies
+
+# LLM и AI
+# Ollama должна быть установлена отдельно: brew install ollama
+
+# Голосовое распознавание
+SpeechRecognition==3.10.0
+PyAudio==0.2.14
+
+# Обработка изображений (скриншоты)
+Pillow==10.1.0
+
+# Работа с данными
+PyYAML==6.0.1
+
+# HTTP запросы (стандартная библиотека urllib, но можно использовать requests)
+requests==2.31.0
+
+# Опциональные зависимости:
+# - pocketsphinx для офлайн распознавания речи
+# - openai для Whisper API (требует OPENAI_API_KEY)
